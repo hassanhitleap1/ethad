@@ -1,5 +1,12 @@
 <?php
 
+use app\models\Area;
+use app\models\Sender;
+use app\models\Status;
+use app\models\Subscription;
+use kartik\date\DatePicker;
+use kartik\select2\Select2;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -8,55 +15,108 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="users-form">
+<div class="continer">
+<?php $form = ActiveForm::begin(); ?>
+    <div class="row">
+        <div class="col-md-4">
+            <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-md-4">
+             <?= $form->field($model, 'name_en')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-md-4">
+            <?= $form->field($model, 'name_ar')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <?= $form->field($model, 'date_of_birth')->widget(DatePicker::classname(), [
+                    'options' => ['placeholder' => 'Enter birth date ...'],
+                    'pluginOptions' => [
+                        'autoclose'=>true
+                    ]
+            ]);?>
+        </div>
+        <div class="col-md-4">
+            <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-md-4">
+            <?= $form->field($model, 'status')->textInput() ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <?= $form->field($model, 'agree')->textInput() ?>
+        </div>
+        <div class="col-md-4">
+            <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-md-4">
+                 <?= $form->field($model, 'other_phone')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
 
-    <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
+    <div class="row">
+        <div class="col-md-4">
+            <?= $form->field($model, 'area_id')->widget(Select2::classname(), [
+                        'data' =>  ArrayHelper::map(Area::find()->all(), 'id', 'name_ar'),
+                        'language' => 'ar',
+                        'options' => ['placeholder' =>Yii::t('app',"Plz_Select_Name_Of_Jobs")],
+                       
+                    ]); ?>
+        </div>
+        <div class="col-md-4">
+            <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-md-4">
+            <?= $form->field($model, 'street')->textInput(['maxlength' => true]) ?> 
+        </div>
+    </div>
 
-    <?= $form->field($model, 'name_en')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'name_ar')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'date_of_birth')->textInput() ?>
-
-    <?= $form->field($model, 'auth_key')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'password_hash')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'password_reset_token')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'status')->textInput() ?>
-
-    <?= $form->field($model, 'agree')->textInput() ?>
-
-    <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'other_phone')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'area_id')->textInput() ?>
-
-    <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'street')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'subscrip_id')->textInput() ?>
-
-    <?= $form->field($model, 'price_subscrip')->textInput() ?>
-
-    <?= $form->field($model, 'sender_id')->textInput() ?>
-
-    <?= $form->field($model, 'status_id')->textInput() ?>
-
-    <?= $form->field($model, 'start_date')->textInput() ?>
-
-    <?= $form->field($model, 'note')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
+    <div class="row">
+        <div class="col-md-4">
+            <?= $form->field($model, 'subscrip_id')->widget(Select2::classname(), [
+                        'data' =>  ArrayHelper::map(Subscription::find()->all(), 'id', 'name'),
+                        'language' => 'ar',
+                        'options' => ['placeholder' =>Yii::t('app',"Plz_Select_Name_Of_Jobs")],
+                       
+                    ]); ?>
+        </div>
+        <div class="col-md-4">
+            <?= $form->field($model, 'price_subscrip')->textInput() ?>
+        </div>
+        <div class="col-md-4"> 
+            <?= $form->field($model, 'sender_id')->widget(Select2::classname(), [
+                        'data' =>  ArrayHelper::map(Sender::find()->all(), 'id', 'name'),
+                        'language' => 'ar',
+                        'options' => ['placeholder' =>Yii::t('app',"Plz_Select_Name_Of_Jobs")],
+                       
+                    ]); ?>
+        </div>
+    </div>
+   
+    <div class="row">
+        <div class="col-md-4">
+            <?= $form->field($model, 'status_id')->widget(Select2::classname(), [
+                        'data' =>  ArrayHelper::map(Status::find()->all(), 'id', 'name'),
+                        'language' => 'ar',
+                        'options' => ['placeholder' =>Yii::t('app',"Plz_Select_Name_Of_Jobs")],
+                       
+                    ]); ?>
+        </div>
+        <div class="col-md-4">
+             <?= $form->field($model, 'start_date')->widget(DatePicker::classname(), [
+                    'options' => ['placeholder' => 'Enter birth date ...'],
+                    'pluginOptions' => [
+                        'autoclose'=>true
+                    ]
+            ]);?>
+        </div>
+        <div class="col-md-4">
+            <?= $form->field($model, 'note')->textarea(['rows' => 6]) ?>   
+        </div>
+    </div>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

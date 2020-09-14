@@ -23,6 +23,7 @@ class Subscription extends \yii\db\ActiveRecord
         return '{{%subscription}}';
     }
 
+    
     /**
      * {@inheritdoc}
      */
