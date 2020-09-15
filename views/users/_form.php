@@ -33,6 +33,8 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'date_of_birth')->widget(DatePicker::classname(), [
                     'options' => ['placeholder' => 'Enter birth date ...'],
                     'pluginOptions' => [
+                        'format' => 'yyyy-mm-dd',
+                        'todayHighlight' => true,
                         'autoclose'=>true
                     ]
             ]);?>
@@ -41,18 +43,31 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-md-4">
-            <?= $form->field($model, 'status')->textInput() ?>
+            <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
         </div>
     </div>
     <div class="row">
         <div class="col-md-4">
-            <?= $form->field($model, 'agree')->textInput() ?>
-        </div>
-        <div class="col-md-4">
-            <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
-        </div>
-        <div class="col-md-4">
                  <?= $form->field($model, 'other_phone')->textInput(['maxlength' => true]) ?>
+        </div>
+
+        <div class="col-md-4">
+            <?= $form->field($model, 'status_id')->widget(Select2::classname(), [
+                        'data' =>  ArrayHelper::map(Status::find()->all(), 'id', 'name'),
+                        'language' => 'ar',
+                        'options' => ['placeholder' =>Yii::t('app',"Plz_Select_Name_Of_Jobs")],
+                       
+                    ]); ?>
+        </div>
+        <div class="col-md-4">
+             <?= $form->field($model, 'start_date')->widget(DatePicker::classname(), [
+                    'options' => ['placeholder' => 'Enter birth date ...'],
+                    'pluginOptions' => [
+                        'format' => 'yyyy-mm-dd',
+                        'todayHighlight' => true,
+                        'autoclose'=>true
+                    ]
+            ]);?>
         </div>
     </div>
 
@@ -97,22 +112,7 @@ use yii\widgets\ActiveForm;
     </div>
    
     <div class="row">
-        <div class="col-md-4">
-            <?= $form->field($model, 'status_id')->widget(Select2::classname(), [
-                        'data' =>  ArrayHelper::map(Status::find()->all(), 'id', 'name'),
-                        'language' => 'ar',
-                        'options' => ['placeholder' =>Yii::t('app',"Plz_Select_Name_Of_Jobs")],
-                       
-                    ]); ?>
-        </div>
-        <div class="col-md-4">
-             <?= $form->field($model, 'start_date')->widget(DatePicker::classname(), [
-                    'options' => ['placeholder' => 'Enter birth date ...'],
-                    'pluginOptions' => [
-                        'autoclose'=>true
-                    ]
-            ]);?>
-        </div>
+    
         <div class="col-md-4">
             <?= $form->field($model, 'note')->textarea(['rows' => 6]) ?>   
         </div>

@@ -53,16 +53,13 @@ class Users extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['date_of_birth', 'start_date', 'created_at', 'updated_at'], 'safe'],
-            [['status', 'agree', 'area_id', 'subscrip_id', 'sender_id', 'status_id'], 'integer'],
+            [['date_of_birth', 'start_date'], 'safe'],
+            [[  'area_id', 'subscrip_id', 'sender_id', 'status_id'], 'integer'],
             [['price_subscrip'], 'number'],
             [['note'], 'string'],
-            [['created_at'], 'required'],
-            [['username', 'name_en', 'name_ar', 'password_hash', 'password_reset_token', 'email', 'phone', 'other_phone'], 'string', 'max' => 255],
-            [['auth_key'], 'string', 'max' => 32],
+            [['username', 'name_en', 'name_ar', 'email', 'phone', 'other_phone'], 'string', 'max' => 255],
             [['address', 'street'], 'string', 'max' => 250],
             [['username'], 'unique'],
-            [['password_reset_token'], 'unique'],
             [['email'], 'unique'],
             [['area_id'], 'exist', 'skipOnError' => true, 'targetClass' => Area::className(), 'targetAttribute' => ['area_id' => 'id']],
             [['sender_id'], 'exist', 'skipOnError' => true, 'targetClass' => Sender::className(), 'targetAttribute' => ['sender_id' => 'id']],

@@ -43,6 +43,7 @@ AppAsset::register($this);
             ['label' => 'Contact', 'url' => ['/site/contact']],
             ['label' => 'Users', 'url' => ['/users/index']],
             ['label' => 'Area', 'url' => ['/area/index']],
+            ['label' => 'Sender', 'url' => ['/sender/index']],
             ['label' => 'Status', 'url' => ['/status/index']],
             ['label' => 'Payments', 'url' => ['/payments/index']],
             ['label' => 'Subscription', 'url' => ['/subscription/index']],
