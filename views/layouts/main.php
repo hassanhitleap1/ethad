@@ -55,6 +55,7 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'Sender', 'url' => ['/sender/index']];
         $menuItems[] = ['label' => 'Status', 'url' => ['/status/index']];
         $menuItems[] = ['label' => 'Payments', 'url' => ['/payments/index']];
+        $menuItems[] = ['label' => 'User Not Pay', 'url' => ['/users-not-pay/index']];
         $menuItems[] =['label' => 'Subscription', 'url' => ['/subscription/index']];
         $menuItems[] = '<li>'
         . Html::beginForm(['/site/logout'], 'post')
