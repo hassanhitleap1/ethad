@@ -59,10 +59,22 @@ class UsersNotPaySearch extends UsersNotPay
             return $dataProvider;
         }
 
-   
-    $query
-        ->andWhere(['<=', 'start_date', $today->addMonths(-1)->toDateTimeString()])
+        $lastMonth=$today->addMonths(-1)->toDateTimeString();
+
+
+        $subQuery = Payments::find()->select('user_id')
+        ->andWhere(['>', 'payment_date',  $lastMonth])->distinct();
+
+        $subQuery2 = Payments::find()->where(['user_id'=>'user.id'])->sum('amount_paid');;
+       
+        $query->where(['not in', 'id', $subQuery])
+            ->where(['=>', 'price_subscrip', $subQuery2])
+            ->andWhere(['<=', 'start_date',  $lastMonth])
             ->andWhere(['not', ['start_date' => null]]);
+           
+           
+         
+
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
@@ -91,7 +103,8 @@ class UsersNotPaySearch extends UsersNotPay
             ->andFilterWhere(['like', 'address', $this->address])
             ->andFilterWhere(['like', 'street', $this->street])
             ->andFilterWhere(['like', 'note', $this->note]);
-
+            
+          
         return $dataProvider;
     }
 }

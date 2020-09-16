@@ -27,9 +27,23 @@ class m200913_195409_create_payments_table extends Migration
             
         ], $tableOptions);
 
+        $this->addForeignKey(
+            'fk-payments-user_id',
+            'payments',
+            'user_id',
+            'user',
+            'id',
+            'CASCADE'
+        );
+
     }
     public function down()
     {
+        $this->dropForeignKey(
+            'fk-payments-user_id',
+            'user'
+        );
+
         $this->dropTable('{{%payments}}');
     }
 
