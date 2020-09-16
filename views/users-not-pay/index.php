@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'price_subscrip',
             //'sender_id',
             //'status_id',
-            //'start_date',
+            'start_date',
             //'note:ntext',
             //'created_at',
             //'updated_at',

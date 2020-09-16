@@ -5,6 +5,7 @@ namespace app\models;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\UsersNotPay;
+use Carbon\Carbon;
 
 /**
  * UsersSearch represents the model behind the search form of `app\models\Users`.
@@ -44,6 +45,7 @@ class UsersNotPaySearch extends UsersNotPay
         $query = UsersNotPay::find();
 
         // add conditions that should always apply here
+        $today=Carbon::now("Asia/Amman");
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -57,6 +59,10 @@ class UsersNotPaySearch extends UsersNotPay
             return $dataProvider;
         }
 
+   
+    $query
+        ->andWhere(['<=', 'start_date', $today->addMonths(-1)->toDateTimeString()])
+            ->andWhere(['not', ['start_date' => null]]);
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
