@@ -65,15 +65,18 @@ class UsersNotPaySearch extends UsersNotPay
         $subQuery = Payments::find()->select('user_id')
         ->andWhere(['>', 'payment_date',  $lastMonth])->distinct();
 
-        $subQuery2 = Payments::find()->where(['user_id'=>'user.id'])->sum('amount_paid');;
+    
        
-        $query->where(['not in', 'id', $subQuery])
-            ->where(['=>', 'price_subscrip', $subQuery2])
+        $query
+        ->where('user.price_subscrip > 
+        (SELECT sum(`payments`.`amount_paid`) FROM `payments` where `payments`.`user_id`=`user`.`id`)')
+            ->andWhere(['not in', 'id', $subQuery])
             ->andWhere(['<=', 'start_date',  $lastMonth])
-            ->andWhere(['not', ['start_date' => null]]);
+            ->andWhere(['not', ['start_date' => null]])
+            ;
            
            
-         
+            //''
 
         // grid filtering conditions
         $query->andFilterWhere([
