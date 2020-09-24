@@ -4,14 +4,57 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "575e71fccc9f2e9ca73b3fda59430020",
+    "content-hash": "105969be2ef6f199d75261822f64f963",
     "packages": [
+        {
+            "name": "airani/yii2-bootstrap-rtl",
+            "version": "1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/airani/yii2-bootstrap-rtl.git",
+                "reference": "5231b39ccf69e806ef5a024a67e57f91ae484267"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/airani/yii2-bootstrap-rtl/zipball/5231b39ccf69e806ef5a024a67e57f91ae484267",
+                "reference": "5231b39ccf69e806ef5a024a67e57f91ae484267",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/bootstrap": "3.4.* |3.3.* | 3.2.* | 3.1.*",
+                "bower-asset/bootstrap-rtl": "*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "airani\\bootstrap\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Ali Irani",
+                    "email": "ali@irani.im"
+                }
+            ],
+            "description": "The Twitter Bootstrap Rtl extension for the Yii 2.0 framework",
+            "keywords": [
+                "bootstrap",
+                "rtl",
+                "yii2"
+            ],
+            "time": "2019-01-07T13:43:23+00:00"
+        },
         {
             "name": "bower-asset/bootstrap",
             "version": "v3.4.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/twbs/bootstrap.git",
+                "url": "git@github.com:twbs/bootstrap.git",
                 "reference": "68b0d231a13201eb14acd3dc84e51543d16e5f7e"
             },
             "dist": {
@@ -28,11 +71,32 @@
             ]
         },
         {
+            "name": "bower-asset/bootstrap-rtl",
+            "version": "v3.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/morteza/bootstrap-rtl.git",
+                "reference": "961dc50152095a948ffcd57a5df154856b4e49b7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/morteza/bootstrap-rtl/zipball/961dc50152095a948ffcd57a5df154856b4e49b7",
+                "reference": "961dc50152095a948ffcd57a5df154856b4e49b7"
+            },
+            "require": {
+                "bower-asset/bootstrap": ">=3.3.0"
+            },
+            "type": "bower-asset",
+            "license": [
+                "Unlicensed Public Domain"
+            ]
+        },
+        {
             "name": "bower-asset/inputmask",
             "version": "3.3.11",
             "source": {
                 "type": "git",
-                "url": "https://github.com/RobinHerbots/Inputmask.git",
+                "url": "git@github.com:RobinHerbots/Inputmask.git",
                 "reference": "5e670ad62f50c738388d4dcec78d2888505ad77b"
             },
             "dist": {
@@ -53,7 +117,7 @@
             "version": "3.5.1",
             "source": {
                 "type": "git",
-                "url": "git@github.com:jquery/jquery-dist.git",
+                "url": "https://github.com/jquery/jquery-dist.git",
                 "reference": "4c0e4becb8263bb5b3e6dadc448d8e7305ef8215"
             },
             "dist": {

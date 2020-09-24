@@ -48,13 +48,13 @@ class Payments extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'user_id' => Yii::t('app', 'User ID'),
-            'voucher_number' => Yii::t('app', 'Voucher Number'),
-            'amount_paid' => Yii::t('app', 'Amount Paid'),
-            'registration_date' => Yii::t('app', 'Registration Date'),
-            'payment_date' => Yii::t('app', 'Payment Date'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Updated At'),
+            'user_id' => Yii::t('app', 'User_ID'),
+            'voucher_number' => Yii::t('app', 'Voucher_Number'),
+            'amount_paid' => Yii::t('app', 'Amount_Paid'),
+            'registration_date' => Yii::t('app', 'Registration_Date'),
+            'payment_date' => Yii::t('app', 'Payment_Date'),
+            'created_at' => Yii::t('app', 'Created_At'),
+            'updated_at' => Yii::t('app', 'Updated_At'),
         ];
     }
 

@@ -41,22 +41,22 @@ AppAsset::register($this);
 
     
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Home', 'url' => ['/site/index']];
-        $menuItems[] = ['label' => 'About', 'url' => ['/site/about']];
-        $menuItems[] =['label' => 'Contact', 'url' => ['/site/contact']];
-        $menuItems[] =['label' => 'Login', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => Yii::t('app','Home'), 'url' => ['/site/index']];
+        $menuItems[] = ['label' => Yii::t('app','About'), 'url' => ['/site/about']];
+        $menuItems[] =['label' => Yii::t('app','Contact'), 'url' => ['/site/contact']];
+        $menuItems[] =['label' => Yii::t('app','Login'), 'url' => ['/site/login']];
         
       
     }else{
          
-        $menuItems[] = ['label' => 'Home', 'url' => ['/site/index']];
-        $menuItems[] =['label' => 'Users', 'url' => ['/users/index']];
-        $menuItems[] = ['label' => 'Area', 'url' => ['/area/index']];
-        $menuItems[] = ['label' => 'Sender', 'url' => ['/sender/index']];
-        $menuItems[] = ['label' => 'Status', 'url' => ['/status/index']];
-        $menuItems[] = ['label' => 'Payments', 'url' => ['/payments/index']];
-        $menuItems[] = ['label' => 'User Not Pay', 'url' => ['/users-not-pay/index']];
-        $menuItems[] =['label' => 'Subscription', 'url' => ['/subscription/index']];
+        $menuItems[] = ['label' => Yii::t('app','Home'), 'url' => ['/site/index']];
+        $menuItems[] =['label' => Yii::t('app','Users'), 'url' => ['/users/index']];
+        $menuItems[] = ['label' => Yii::t('app','Area'), 'url' => ['/area/index']];
+        $menuItems[] = ['label' => Yii::t('app','Sender'), 'url' => ['/sender/index']];
+        $menuItems[] = ['label' => Yii::t('app','Status'), 'url' => ['/status/index']];
+        $menuItems[] = ['label' => Yii::t('app','Payments'), 'url' => ['/payments/index']];
+        $menuItems[] = ['label' => Yii::t('app','User_Not_Pay'), 'url' => ['/users-not-pay/index']];
+        $menuItems[] =['label' => Yii::t('app','Subscription'), 'url' => ['/subscription/index']];
         $menuItems[] = '<li>'
         . Html::beginForm(['/site/logout'], 'post')
         . Html::submitButton(

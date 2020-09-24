@@ -20,7 +20,8 @@
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
         "kartik-v/yii2-widget-datepicker": "@dev",
         "kartik-v/yii2-widget-select2": "@dev",
-        "nesbot/carbon": "^2.39"
+        "nesbot/carbon": "^2.39",
+        "airani/yii2-bootstrap-rtl": "^1.2"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
