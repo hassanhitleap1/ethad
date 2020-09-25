@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Subscription */
 
-$this->title = Yii::t('app', 'Create Subscription');
+$this->title = Yii::t('app', 'Create_Subscription');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Subscriptions'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

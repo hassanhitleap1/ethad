@@ -6,7 +6,6 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\SenderSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-
 $this->title = Yii::t('app', 'Senders');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -15,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Sender'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create_Sender'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>

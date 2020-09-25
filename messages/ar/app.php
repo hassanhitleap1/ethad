@@ -54,4 +54,18 @@ return [
     "Other_Phone"=>"هاتف اخر",
     "Senders"=>"الجهات المرسلة",
     "Sender_Create"=>"انشاء جهة مرسلة",
+    "Create_Subscription"=>"انشاء اشتراك",
+    "Subscription"=>"اشتراك",
+    "Subscriptions"=>"اشتراكات",
+    "Create_Sender"=>"انشاء جهه مرسبة",
+    "Create_Area"=>"انشاء منطقة",
+    "Statuses"=>"الحالات",
+    "Create_Status"=>"انشاء حالة",
+    "Create_Payment"=>"انشاء دفعة",
+    "Voucher_Number"=>"رقم الوصل",
+    "Amount_Paid"=>"مبلغ الدفع",
+    "Registration_Date"=>"تاريخ التسجيل",
+    "Payment_Date"=>"تاريخ الدفع",
+
+    
 ];
