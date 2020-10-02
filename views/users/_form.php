@@ -19,16 +19,11 @@ use yii\widgets\ActiveForm;
 <?php $form = ActiveForm::begin(); ?>
     <div class="row">
         <div class="col-md-4">
-            <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
-        </div>
-        <div class="col-md-4">
              <?= $form->field($model, 'name_en')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-md-4">
             <?= $form->field($model, 'name_ar')->textInput(['maxlength' => true]) ?>
         </div>
-    </div>
-    <div class="row">
         <div class="col-md-4">
             <?= $form->field($model, 'date_of_birth')->widget(DatePicker::classname(), [
                     'options' => ['placeholder' => 'Enter birth date ...'],
@@ -39,17 +34,21 @@ use yii\widgets\ActiveForm;
                     ]
             ]);?>
         </div>
+    </div>
+    <div class="row">
+      
         <div class="col-md-4">
             <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-md-4">
             <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
         </div>
-    </div>
-    <div class="row">
         <div class="col-md-4">
                  <?= $form->field($model, 'other_phone')->textInput(['maxlength' => true]) ?>
         </div>
+    </div>
+    <div class="row">
+        
 
         <div class="col-md-4">
             <?= $form->field($model, 'status_id')->widget(Select2::classname(), [
@@ -69,6 +68,14 @@ use yii\widgets\ActiveForm;
                     ]
             ]);?>
         </div>
+        <div class="col-md-4"> 
+            <?= $form->field($model, 'sender_id')->widget(Select2::classname(), [
+                        'data' =>  ArrayHelper::map(Sender::find()->all(), 'id', 'name'),
+                        'language' => 'ar',
+                        'options' => ['placeholder' =>Yii::t('app',"Plz_Select_Name_Of_Jobs")],
+                       
+                    ]); ?>
+        </div>
     </div>
 
 
@@ -77,7 +84,7 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'area_id')->widget(Select2::classname(), [
                         'data' =>  ArrayHelper::map(Area::find()->all(), 'id', 'name_ar'),
                         'language' => 'ar',
-                        'options' => ['placeholder' =>Yii::t('app',"Plz_Select_Name_Of_Jobs")],
+                        'options' => ['placeholder' =>Yii::t('app',"Please_Select")],
                        
                     ]); ?>
         </div>
@@ -101,22 +108,12 @@ use yii\widgets\ActiveForm;
         <div class="col-md-4">
             <?= $form->field($model, 'price_subscrip')->textInput() ?>
         </div>
-        <div class="col-md-4"> 
-            <?= $form->field($model, 'sender_id')->widget(Select2::classname(), [
-                        'data' =>  ArrayHelper::map(Sender::find()->all(), 'id', 'name'),
-                        'language' => 'ar',
-                        'options' => ['placeholder' =>Yii::t('app',"Plz_Select_Name_Of_Jobs")],
-                       
-                    ]); ?>
-        </div>
-    </div>
-   
-    <div class="row">
-    
         <div class="col-md-4">
             <?= $form->field($model, 'note')->textarea(['rows' => 6]) ?>   
         </div>
+       
     </div>
+
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

@@ -138,6 +138,18 @@ class Users extends \yii\db\ActiveRecord
         return $this->hasOne(Sender::className(), ['id' => 'sender_id']);
     }
 
+
+       /**
+     * Gets query for [[Sender]].
+     *
+     * @return \yii\db\ActiveQuery|SenderQuery
+     */
+    public function getStatus()
+    {
+        return $this->hasOne(Status::className(), ['id' => 'status_id']);
+    }
+
+
     /**
      * Gets query for [[Subscrip]].
      *

@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
@@ -27,32 +28,54 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'username',
             'name_en',
             'name_ar',
+            'phone',
             'date_of_birth',
-            //'auth_key',
-            //'password_hash',
-            //'password_reset_token',
-            //'email:email',
-            //'status',
-            //'agree',
-            //'phone',
-            //'other_phone',
-            //'area_id',
-            //'address',
-            //'street',
-            //'subscrip_id',
-            //'price_subscrip',
-            //'sender_id',
-            //'status_id',
-            //'start_date',
-            //'note:ntext',
-            //'created_at',
-            //'updated_at',
+            [
+                'attribute'=>'area_id',
+                'value'=>function($searchModel){
+                    return $searchModel->area['name_en'];
+                }
+            ],
+            [
+                'attribute'=>'area_id',
+                'value'=>function($searchModel){
+                    return $searchModel->area['name_en'];
+                }
+            ],
+            'address',
+            'street',
+            'subscrip_id',
+            'price_subscrip',
+            'status_id',
+            'sender_id',
+            'note:ntext',
+            'created_at',
+            [
+                'attribute' => 'created_at',
+                'label'=> Yii::t('app', 'Created_At'),
+                'value'=> function($searchModel){
+                    return Carbon::parse($searchModel->created_at)->toDateString();
+                }
+            ],
+            [
+                'attribute' => 'created_at',
+                'label'=> Yii::t('app', 'Created_At'),
+                'value'=> function($searchModel){
+                    $now = Carbon::now("Asia/Amman");
+                     $date = Carbon::parse($searchModel->created_at);
+                    $mess="";
+                    $def=$date->diffInDays($now);
+                    return "registered befor ". $def ;
+                }
+            ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {update} '
+            ]
+  
         ],
     ]); ?>
 
