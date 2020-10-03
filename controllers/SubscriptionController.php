@@ -124,4 +124,20 @@ class SubscriptionController extends Controller
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
+
+
+    
+      /**
+     * Displays a single Payments model.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionModel($id)
+    {
+        header('Content-Type: application/json');
+        echo json_encode($this->findModel($id)->toArray(),JSON_PRETTY_PRINT);
+       return;
+    }
 }
+

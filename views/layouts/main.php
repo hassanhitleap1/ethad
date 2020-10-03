@@ -43,7 +43,6 @@ AppAsset::register($this);
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => Yii::t('app','Home'), 'url' => ['/site/index']];
         $menuItems[] = ['label' => Yii::t('app','About'), 'url' => ['/site/about']];
-        $menuItems[] =['label' => Yii::t('app','Contact'), 'url' => ['/site/contact']];
         $menuItems[] =['label' => Yii::t('app','Login'), 'url' => ['/site/login']];
         
       
@@ -57,6 +56,8 @@ AppAsset::register($this);
         $menuItems[] = ['label' => Yii::t('app','Payments'), 'url' => ['/payments/index']];
         $menuItems[] = ['label' => Yii::t('app','User_Not_Pay'), 'url' => ['/users-not-pay/index']];
         $menuItems[] =['label' => Yii::t('app','Subscription'), 'url' => ['/subscription/index']];
+        $menuItems[] = ['label' => Yii::t('app','Expenses'), 'url' => ['/expenses/index']];
+        $menuItems[] = ['label' => Yii::t('app','Pages'), 'url' => ['/page/index']];
         $menuItems[] = '<li>'
         . Html::beginForm(['/site/logout'], 'post')
         . Html::submitButton(

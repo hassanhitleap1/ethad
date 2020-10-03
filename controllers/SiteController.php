@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Page;
 
 class SiteController extends Controller
 {
@@ -123,6 +124,8 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
-        return $this->render('about');
+        $page=Page::find()->where(['key'=>'about'])->one();
+        return $this->render('about',['page'=>$page]);
+        
     }
 }

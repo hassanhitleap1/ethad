@@ -36,14 +36,18 @@ use yii\widgets\ActiveForm;
     <div class="row">
         <div class="col-md-4">
 
-        <?= $form->field($model, 'registration_date')->widget(DatePicker::classname(), [
+        <?php /*
+        $form->field($model, 'registration_date')->widget(DatePicker::classname(), [
                     'options' => ['placeholder' => 'Enter birth date ...'],
                     'pluginOptions' => [
                         'format' => 'yyyy-mm-dd',
                         'todayHighlight' => true,
                         'autoclose'=>true
                     ]
-            ]);?>
+            ]);
+            
+            
+            */?>
         </div>
         <div class="col-md-4">
       

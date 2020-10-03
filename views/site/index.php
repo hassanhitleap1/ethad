@@ -2,21 +2,16 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+use yii\helpers\Html ;
+
+$this->title = 'اتحاد العربي';
 ?>
 <div class="site-index">
 
     <div class="jumbotron">
         <h1>اتحاد العربي</h1>
-
         <p class="lead">لسنا الوحدو لكننا مميزون.</p>
-
-       
+        <?= Html::img('logo.jpg', ['class' => "img-rounded img-responsive center-block"]); ?>
     </div>
 
-    <div class="body-content">
-
-        
-
-    </div>
 </div>

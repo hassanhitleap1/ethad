@@ -8,6 +8,7 @@ use yii\widgets\ActiveForm;
 /* @var $model app\models\Page */
 /* @var $form yii\widgets\ActiveForm */
 ?>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
 
 <div class="page-form">
 
@@ -17,10 +18,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
     <?=
-         $form->field($model, 'text')->widget(Codemirror::class, [
-        'preset' => Codemirror::PRESET_PHP,
-        'options' => ['placeholder' => 'Edit your code here...']
-    ]);
+         $form->field($model, 'text')->widget(Codemirror::class);
     ?>
 
     <div class="form-group">

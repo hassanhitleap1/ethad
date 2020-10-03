@@ -41,6 +41,17 @@ class Payments extends \yii\db\ActiveRecord
         ];
     }
 
+
+     /**
+     * Gets query for [[Sender]].
+     *
+     * @return \yii\db\ActiveQuery|SenderQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(Users::className(), ['id' => 'user_id']);
+    }
+
     /**
      * {@inheritdoc}
      */
