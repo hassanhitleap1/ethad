@@ -67,6 +67,7 @@ return [
     "Registration_Date"=>"تاريخ التسجيل",
     "Payment_Date"=>"تاريخ الدفع",
     "Created_At"=>"تاريخ التسجيل",
+    "Pages"=>"الصفحات"
 
     
 ];
