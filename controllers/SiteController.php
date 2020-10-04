@@ -128,4 +128,17 @@ class SiteController extends Controller
         return $this->render('about',['page'=>$page]);
         
     }
+
+
+     /**
+     * Displays about page.
+     *
+     * @return string
+     */
+    public function actionPages()
+    {
+        $pages=Page::find()->where(['<>','key','about'])->all();
+        return $this->render('pages',['pages'=>$pages]);
+        
+    }
 }
