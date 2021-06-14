@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -35,14 +35,22 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute'=>'area_id',
                 'value'=>function($searchModel){
-                    return $searchModel->area['name_en'];
+                    try{
+                        return $searchModel['area']['name_en'];
+                    }catch (Exception $exception){
+                        return "";
+                    }
+
                 }
             ],
             [
-                'attribute'=>'area_id',
+                'attribute'=>'type',
                 'value'=>function($searchModel){
-                    return $searchModel->area['name_en'];
-                }
+                    return $searchModel['type'] == 1 ? "مدير":"طالب" ;
+
+                },
+                'filter'    => [ "1"=>"مدير", "2"=>"طالب" ],
+               // 'filter'=>[2=>"طالب",2=>"مدير" , 2=>"طالب"]
             ],
             'address',
             'street',
@@ -52,13 +60,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'sender_id',
             'note:ntext',
             'created_at',
-            [
-                'attribute' => 'created_at',
-                'label'=> Yii::t('app', 'Created_At'),
-                'value'=> function($searchModel){
-                    return Carbon::parse($searchModel->created_at)->toDateString();
-                }
-            ],
+//            [
+//                'attribute' => 'created_at',
+//                'label'=> Yii::t('app', 'Created_At'),
+//                'value'=> function($searchModel){
+//                    return Carbon::parse($searchModel->created_at)->toDateString();
+//                }
+//            ],
             [
                 'attribute' => 'created_at',
                 'label'=> Yii::t('app', 'Created_At'),

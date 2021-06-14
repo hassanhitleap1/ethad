@@ -24,6 +24,7 @@ use yii\widgets\ActiveForm;
         <div class="col-md-4">
             <?= $form->field($model, 'name_ar')->textInput(['maxlength' => true]) ?>
         </div>
+
         <div class="col-md-4">
             <?= $form->field($model, 'date_of_birth')->widget(DatePicker::classname(), [
                     'options' => ['placeholder' => 'Enter birth date ...'],
@@ -111,6 +112,20 @@ use yii\widgets\ActiveForm;
         <div class="col-md-4">
             <?= $form->field($model, 'note')->textarea(['rows' => 6]) ?>   
         </div>
+        <?php if(Yii::$app->user->identity->username =="admin"):?>
+        <div class="col-md-4">
+            <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-md-4">
+            <?= $form->field($model, 'password')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-md-4">
+            <?= $form->field($model, 'type')->dropDownList([  "2"=>"طالب","1"=>"مدير" ]) ?>
+        </div>
+        <?php
+        endif;;
+        ?>
+
        
     </div>
 

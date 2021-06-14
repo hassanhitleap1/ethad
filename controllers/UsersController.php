@@ -66,8 +66,17 @@ class UsersController extends Controller
     {
         $model = new Users();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post()) && $model->validate() ) {
+            if($model->username==''){
+                $model->username=Null;
+            }
+
+            $model->password_hash = Yii::$app->security->generatePasswordHash($model->password);
+            $model->by_user=\Yii::$app->user->identity->id;
+            if($model->save()){
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+
         }
 
         return $this->render('create', [

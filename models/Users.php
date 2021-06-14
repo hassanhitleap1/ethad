@@ -42,6 +42,7 @@ class Users extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+    public  $password;
     public static function tableName()
     {
         return '{{%user}}';
@@ -54,13 +55,14 @@ class Users extends \yii\db\ActiveRecord
     {
         return [
             [['date_of_birth', 'start_date'], 'safe'],
-            [[  'area_id', 'subscrip_id', 'sender_id', 'status_id'], 'integer'],
+            [[  'area_id', 'subscrip_id', 'sender_id', 'status_id','type'], 'integer'],
             [['price_subscrip'], 'number'],
             [['note'], 'string'],
-            [['username', 'name_en', 'name_ar', 'email', 'phone', 'other_phone'], 'string', 'max' => 255],
+            [['username', 'name_en', 'name_ar', 'email', 'phone', 'other_phone','password'], 'string', 'max' => 255],
             [['address', 'street'], 'string', 'max' => 250],
-            [['username'], 'unique'],
-            [['email'], 'unique'],
+            ['username', 'unique', 'targetClass' => '\app\models\User', 'message' => 'This username has already been taken.'],
+            ['email', 'unique', 'targetClass' => '\app\models\User', 'message' => 'This email has already been taken.'],
+
             [['area_id'], 'exist', 'skipOnError' => true, 'targetClass' => Area::className(), 'targetAttribute' => ['area_id' => 'id']],
             [['sender_id'], 'exist', 'skipOnError' => true, 'targetClass' => Sender::className(), 'targetAttribute' => ['sender_id' => 'id']],
             [['subscrip_id'], 'exist', 'skipOnError' => true, 'targetClass' => Subscription::className(), 'targetAttribute' => ['subscrip_id' => 'id']],
@@ -137,6 +139,7 @@ class Users extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Sender::className(), ['id' => 'sender_id']);
     }
+
 
 
        /**

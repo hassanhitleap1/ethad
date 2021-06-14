@@ -17,7 +17,7 @@ class UsersSearch extends Users
     public function rules()
     {
         return [
-            [['id', 'status', 'agree'], 'integer'],
+            [['id', 'status', 'agree','type'], 'integer'],
             [['username', 'name_en',  'subscrip_id', 'sender_id', 'status_id','area_id','name_ar', 'date_of_birth', 'auth_key', 'password_hash', 'password_reset_token', 'email', 'phone', 'other_phone', 'address', 'street', 'start_date', 'note', 'created_at', 'updated_at'], 'safe'],
             [['price_subscrip'], 'number'],
         ];
@@ -41,7 +41,8 @@ class UsersSearch extends Users
      */
     public function search($params)
     {
-        $query = Users::find();
+        $query = Users::find()->select(["user.*","creater.name_ar as name_creater"])
+        ->leftJoin('user as creater', 'creater.by_user = user.id');
 
         // add conditions that should always apply here
 
@@ -49,7 +50,9 @@ class UsersSearch extends Users
             'query' => $query,
         ]);
 
-     
+
+
+
         $this->load($params);
 
         if (!$this->validate()) {
@@ -62,8 +65,18 @@ class UsersSearch extends Users
         $query->joinWith('sender');
         $query->joinWith('subscrip');
         $query->joinWith('status');
-        
 
+
+
+        if(\Yii::$app->user->identity->username =="admin"){
+            $query->andFilterWhere([
+                'type'=>$this->type
+            ]);
+        }else{
+            $query->andFilterWhere([
+                'type'=>2
+            ]);
+        }
 
         // grid filtering conditions
         $query->andFilterWhere([
@@ -73,8 +86,9 @@ class UsersSearch extends Users
             'agree' => $this->agree,
             'price_subscrip' => $this->price_subscrip,
             'start_date' => $this->start_date,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+
+//            'created_at' => $this->created_at,
+//            'updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'username', $this->username])
@@ -94,6 +108,12 @@ class UsersSearch extends Users
             ->andFilterWhere(['like', 'subscription.name', $this->subscrip_id])
             ->andFilterWhere(['like', 'sender.name', $this->sender_id])
             ->andFilterWhere(['like', 'status.name', $this->status_id]);
+
+        if(!is_null($this->created_at) && $this->created_at !=''){
+            $arr_date=explode(' - ',$this->created_at);
+            $query->andFilterWhere(['>=', 'DATE(user.created_at)', $arr_date[0]])
+                ->andFilterWhere(['<=', 'DATE(user.created_at)', $arr_date[1]]);
+        }
 
         return $dataProvider;
     }
