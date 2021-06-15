@@ -152,6 +152,16 @@ class Users extends \yii\db\ActiveRecord
         return $this->hasOne(Status::className(), ['id' => 'status_id']);
     }
 
+          /**
+     * Gets query for [[Sender]].
+     *
+     * @return \yii\db\ActiveQuery|SenderQuery
+     */
+    public function getCrater()
+    {
+        return $this->hasOne(Users::className(), ['id' => 'by_user']);
+    }
+
 
     /**
      * Gets query for [[Subscrip]].

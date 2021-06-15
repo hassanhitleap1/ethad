@@ -11,13 +11,15 @@ use app\models\Users;
  */
 class UsersSearch extends Users
 {
+
+    public $name_creater;
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['id', 'status', 'agree','type'], 'integer'],
+            [['id', 'status', 'agree','type','by_user'], 'integer'],
             [['username', 'name_en',  'subscrip_id', 'sender_id', 'status_id','area_id','name_ar', 'date_of_birth', 'auth_key', 'password_hash', 'password_reset_token', 'email', 'phone', 'other_phone', 'address', 'street', 'start_date', 'note', 'created_at', 'updated_at'], 'safe'],
             [['price_subscrip'], 'number'],
         ];
@@ -41,8 +43,7 @@ class UsersSearch extends Users
      */
     public function search($params)
     {
-        $query = Users::find()->select(["user.*","creater.name_ar as name_creater"])
-        ->leftJoin('user as creater', 'creater.by_user = user.id');
+        $query = Users::find();
 
         // add conditions that should always apply here
 
@@ -65,44 +66,47 @@ class UsersSearch extends Users
         $query->joinWith('sender');
         $query->joinWith('subscrip');
         $query->joinWith('status');
+        $query->joinWith('crater as crater');
+        
 
 
 
         if(\Yii::$app->user->identity->username =="admin"){
             $query->andFilterWhere([
-                'type'=>$this->type
+                'user.type'=>$this->type
             ]);
         }else{
             $query->andFilterWhere([
-                'type'=>2
+                'user.type'=>2
             ]);
         }
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'date_of_birth' => $this->date_of_birth,
-            'status' => $this->status,
-            'agree' => $this->agree,
-            'price_subscrip' => $this->price_subscrip,
-            'start_date' => $this->start_date,
+            'user.id' => $this->id,
+            'user.date_of_birth' => $this->date_of_birth,
+            'user.status' => $this->status,
+            'user.agree' => $this->agree,
+            'user.price_subscrip' => $this->price_subscrip,
+            'user.start_date' => $this->start_date,
+            'user.by_user'=> $this->start_date,
 
 //            'created_at' => $this->created_at,
 //            'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'username', $this->username])
-            ->andFilterWhere(['like', 'name_en', $this->name_en])
-            ->andFilterWhere(['like', 'name_ar', $this->name_ar])
-            ->andFilterWhere(['like', 'auth_key', $this->auth_key])
-            ->andFilterWhere(['like', 'password_hash', $this->password_hash])
-            ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
-            ->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'phone', $this->phone])
-            ->andFilterWhere(['like', 'other_phone', $this->other_phone])
-            ->andFilterWhere(['like', 'address', $this->address])
-            ->andFilterWhere(['like', 'street', $this->street])
-            ->andFilterWhere(['like', 'note', $this->note])
+        $query->andFilterWhere(['like', 'user.username', $this->username])
+            ->andFilterWhere(['like', 'user.name_en', $this->name_en])
+            ->andFilterWhere(['like', 'user.name_ar', $this->name_ar])
+            ->andFilterWhere(['like', 'user.auth_key', $this->auth_key])
+            ->andFilterWhere(['like', 'user.password_hash', $this->password_hash])
+            ->andFilterWhere(['like', 'user.password_reset_token', $this->password_reset_token])
+            ->andFilterWhere(['like', 'user.email', $this->email])
+            ->andFilterWhere(['like', 'user.phone', $this->phone])
+            ->andFilterWhere(['like', 'user.other_phone', $this->other_phone])
+            ->andFilterWhere(['like', 'user.address', $this->address])
+            ->andFilterWhere(['like', 'user.street', $this->street])
+            ->andFilterWhere(['like', 'user.note', $this->note])
 
             ->andFilterWhere(['like', 'area.name_ar', $this->area])
             ->andFilterWhere(['like', 'subscription.name', $this->subscrip_id])

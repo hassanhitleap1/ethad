@@ -4,6 +4,8 @@ use Carbon\Carbon;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use yii\helpers\ArrayHelper;
+use app\models\Users;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\UsersSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -60,6 +62,19 @@ $this->params['breadcrumbs'][] = $this->title;
             'sender_id',
             'note:ntext',
             'created_at',
+            [
+                'attribute'=>'by_user',
+                'value'=>function($searchModel){
+                
+                    try{
+                        return $searchModel['crater']['name_ar'];
+                    }catch (Exception $exception){
+                        return "";
+                    }
+
+                },
+                'filter'    =>ArrayHelper::map(Users::find()->where(['type'=>1])->all(), 'id', 'name_ar'),
+            ],
 //            [
 //                'attribute' => 'created_at',
 //                'label'=> Yii::t('app', 'Created_At'),
